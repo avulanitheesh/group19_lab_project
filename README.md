@@ -24,20 +24,6 @@ Four Waveform Types  : Sine, Square, Sawtooth, and Triangle
 Frequency Control    : Variable frequency, adjustable from the console interface
 Console Interface    : Control waveform type and frequency directly from the CCS console, removing the need for physical switches
 
-### Installation
-
-1. Git repository
-2. Open the project in CCS
-   - Import the project files into Code Composer Studio.
-3. Upload the code
-   - Connect your TIVA Launchpad to your computer, and upload the code using CCS.
-
-### Code Structure
-
-- main.c: Contains the main program logic, including UART and I2C initialization, waveform generation, and user input handling.
-- Waveforms.h: Contains the lookup tables (LUT) for each waveform type.
-- tm4c123gh6pm.h: Hardware register definitions for the TIVA microcontroller.
-
 ### How It Works
 1. UART Console Control:
    - Upon startup, the program initializes UART for console-based communication, allowing users to set the waveform type and frequency directly from CCS's console interface.
