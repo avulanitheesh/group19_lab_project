@@ -50,7 +50,7 @@ Console Interface    : Control waveform type and frequency directly from the CCS
    - A delay loop of 32 µs between samples is used to control the frequency of the generated waveform.
    - The frequency is adjusted by controlling the delay between samples in the loop.
 
-## Console Commands
+### Console Commands
 Once the code is running, enter the following commands in the console:
 
 1. Set Frequency:
