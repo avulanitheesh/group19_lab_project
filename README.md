@@ -52,7 +52,6 @@ Console Interface    : Control waveform type and frequency directly from the CCS
    - The frequency is adjusted by controlling the delay between samples in the loop.
 
 ## Console Commands
-
 Once the code is running, enter the following commands in the console:
 
 1. Set Frequency:
