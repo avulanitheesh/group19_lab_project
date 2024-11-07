@@ -5,7 +5,7 @@ This repository contains the code for developing a signal generator with variabl
 
 ## Project Overview
 
-The program outputs different waveforms (sine, square, sawtooth, and triangle) at adjustable frequencies. The waveform data is stored in a lookup table (LUT), with each waveform represented by 120 samples. By sending these samples to the MCP4725 DAC via the I2C protocol, the program generates analog waveforms from digital values.
+The program outputs different waveforms (sine, square, sawtooth, and triangle) at adjustable frequencies. The waveform data is stored in a lookup table (LUT), with each waveform represented by samples. By sending these samples to the MCP4725 DAC via the I2C protocol, the program generates analog waveforms from digital values.
 
 ### Prerequisites
 
