@@ -150,3 +150,14 @@ void I2C0_Write(uint8_t device_addr, uint16_t data) {
     I2C0_MCS_R = 0x05;               // Run and stop
     while (I2C0_MCS_R & 0x01);       // Wait for transmission
 }
+// 32 us delay function
+void delay_32us() {
+    SYSCTL_RCGCTIMER_R |= 2;         // Enable clock to Timer 1
+    TIMER1_CTL_R = 0;                // Disable Timer 1
+    TIMER1_CFG_R = 0x04;             // 16-bit timer
+    TIMER1_TAMR_R = 0x02;            // Periodic mode
+    TIMER1_TAILR_R = 512;            // Set interval for 32 us
+    TIMER1_ICR_R = 0x01;             // Clear timeout flag
+    TIMER1_CTL_R |= 0x01;            // Enable Timer 1
+    while ((TIMER1_RIS_R & 0x01) == 0); // Wait for timeout
+}
