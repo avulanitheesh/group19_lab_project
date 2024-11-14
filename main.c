@@ -108,5 +108,14 @@ void UART_InString(char *buf, uint16_t max) {
     }
     buf[i] = '\0'; // Null-terminate the string
 }
+// Get frequency from the user
+int getFrequencyFromUser(void) {
+    char buf[10];
+    int frequency;
 
+    UART_OutString("Enter frequency (Hz): ");
+    UART_InString(buf, 10);
+    frequency = atoi(buf);  // Convert string to integer
+    return frequency;
+}
 
