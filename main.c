@@ -129,5 +129,14 @@ int getWaveformTypeFromUser(void) {
     waveformType = atoi(buf);  // Convert string to integer
     return waveformType;
 }
-
+// Initialize I2C0 for DAC communication
+void I2C0_Init(void) {
+    SYSCTL_RCGCI2C_R |= 0x01;    // Activate I2C0
+    SYSCTL_RCGCGPIO_R |= 0x02;   // Activate Port B
+    GPIO_PORTB_AFSEL_R |= 0x0C;  // Enable alt function on PB2-3
+    GPIO_PORTB_ODR_R |= 0x08;    // Enable open drain on PB3
+    GPIO_PORTB_DEN_R |= 0x0C;    // Enable digital I/O on PB2-3
+    I2C0_MCR_R = 0x10;           // Initialize I2C Master
+    I2C0_MTPR_R = 24;            // Set SCL clock speed
+}
 
