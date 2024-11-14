@@ -74,3 +74,16 @@ int main(void) {
         OutputWaveform(waveformType, frequency);
     }
 }
+// Initialize UART0 for console input
+void UART_Init(void) {
+    SYSCTL_RCGCUART_R |= 0x01;   // Activate UART0
+    SYSCTL_RCGCGPIO_R |= 0x01;   // Activate Port A
+    UART0_CTL_R &= ~0x01;        // Disable UART0
+    UART0_IBRD_R = 104;          // 9600 baud rate, assuming 16 MHz system clock
+    UART0_FBRD_R = 11;
+    UART0_LCRH_R = 0x0070;       // 8-bit word length, enable FIFO
+    UART0_CTL_R = 0x301;         // Enable UART0
+    GPIO_PORTA_AFSEL_R |= 0x03;  // Enable alt function on PA1-0
+    GPIO_PORTA_DEN_R |= 0x03;    // Enable digital I/O on PA1-0
+}
+
