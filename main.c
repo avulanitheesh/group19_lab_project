@@ -86,4 +86,11 @@ void UART_Init(void) {
     GPIO_PORTA_AFSEL_R |= 0x03;  // Enable alt function on PA1-0
     GPIO_PORTA_DEN_R |= 0x03;    // Enable digital I/O on PA1-0
 }
-
+// Output string to UART
+void UART_OutString(char *pt) {
+    while (*pt) {
+        while ((UART0_FR_R & 0x20) != 0);      // Wait until TXFF is empty
+        UART0_DR_R = *pt;                      // Output character
+        pt++;
+    }
+}
