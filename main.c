@@ -119,3 +119,15 @@ int getFrequencyFromUser(void) {
     return frequency;
 }
 
+// Get waveform type from the user
+int getWaveformTypeFromUser(void) {
+    char buf[10];
+    int waveformType;
+
+    UART_OutString("Select waveform: 1. Sine, 2. Triangle, 3. Sawtooth, 4. Square\n");
+    UART_InString(buf, 10);
+    waveformType = atoi(buf);  // Convert string to integer
+    return waveformType;
+}
+
+
