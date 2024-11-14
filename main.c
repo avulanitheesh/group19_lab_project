@@ -94,3 +94,19 @@ void UART_OutString(char *pt) {
         pt++;
     }
 }
+
+// Input string from UART
+void UART_InString(char *buf, uint16_t max) {
+    char c;
+    int i = 0;
+    while (i < max - 1) {
+        while ((UART0_FR_R & 0x10) != 0); // Wait until RXFE is empty
+        c = UART0_DR_R;
+        if (c == '\r') break;  // Stop at carriage return
+        buf[i] = c;
+        i++;
+    }
+    buf[i] = '\0'; // Null-terminate the string
+}
+
+
