@@ -161,3 +161,12 @@ void delay_32us() {
     TIMER1_CTL_R |= 0x01;            // Enable Timer 1
     while ((TIMER1_RIS_R & 0x01) == 0); // Wait for timeout
 }
+// Disable global interrupts
+void DisableInterrupts(void) {
+    __asm(" CPSID I");  // Disable interrupts
+}
+
+// Enable global interrupts
+void EnableInterrupts(void) {
+    __asm(" CPSIE I");  // Enable interrupts
+}
