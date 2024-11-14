@@ -45,3 +45,32 @@ void OutputWaveform(int waveformType, int frequency) {
         }
     }
 }
+int main(void) {
+    int waveformType = 1;
+    int frequency = 10;
+
+    // Initialize UART for console input
+    UART_Init();
+    I2C0_Init(); // Initialize I2C for DAC communication
+    EnableInterrupts(); // Enable global interrupts
+
+    while (1) {
+        // Get user input for waveform type and frequency
+        waveformType = getWaveformTypeFromUser();
+        if (waveformType < 1 || waveformType > 4) {
+            UART_OutString("Invalid waveform selection. Please select between 1 and 4.\n");
+            continue;
+        }
+
+        frequency = getFrequencyFromUser();
+        if (frequency <= 0) {
+            UART_OutString("Invalid frequency. Please enter a positive integer.\n");
+            continue;
+        }
+
+        UART_OutString("Generating waveform...\n");
+
+        // Output the waveform based on user selection
+        OutputWaveform(waveformType, frequency);
+    }
+}
