@@ -140,3 +140,13 @@ void I2C0_Init(void) {
     I2C0_MTPR_R = 24;            // Set SCL clock speed
 }
 
+// Write 12-bit data to MCP4725 DAC
+void I2C0_Write(uint8_t device_addr, uint16_t data) {
+    I2C0_MSA_R = (device_addr << 1); // Set slave address and write
+    I2C0_MDR_R = data >> 8;          // Transmit high byte first
+    I2C0_MCS_R = 0x03;               // Start and run
+    while (I2C0_MCS_R & 0x01);       // Wait for transmission
+    I2C0_MDR_R = data & 0xFF;        // Transmit low byte
+    I2C0_MCS_R = 0x05;               // Run and stop
+    while (I2C0_MCS_R & 0x01);       // Wait for transmission
+}
